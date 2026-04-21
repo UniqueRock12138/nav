@@ -64,8 +64,10 @@
               </div>
               <div class="prompt-body" hidden>
                 <div class="prompt-content-wrap">
-                  <button class="copy-btn" data-cat="${i}" data-item="${j}">复制</button>
                   <pre class="prompt-content">${escapeHtml(getContent(item))}</pre>
+                  <div class="prompt-copy-row">
+                    <button class="copy-btn" data-cat="${i}" data-item="${j}">复制</button>
+                  </div>
                 </div>
               </div>
             </div>

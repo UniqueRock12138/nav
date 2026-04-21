@@ -219,16 +219,14 @@ main {
   color: var(--err);
 }
 
-.prompt-content-wrap .copy-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
+.prompt-copy-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
 }
 
 .prompt-content {
   padding: 16px;
-  padding-top: 40px;
   background: var(--surface-hover);
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -263,7 +261,6 @@ main {
   .prompt-content {
     font-size: 12px;
     padding: 12px;
-    padding-top: 40px;
   }
   .link-item {
     flex-wrap: wrap;
