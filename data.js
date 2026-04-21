@@ -19,6 +19,14 @@ const DATA = {
     // 导航数据。所有提示词原文在 prompts.js 中，按 contentId 关联。
     prompts: [
         {
+            category: "工具使用",
+            items: [{ title: "软件工具快速上手", contents: [{label: "工具1", contentId:"tool-quick-start01"}, {label: "工具2", contentId:"tool-quick-start02" }] }],
+        },
+        {
+            category: "提示词框架（Prompt Framework）",
+            items: [{ title: "Role/Gaol/Context/...", contentId: "prompt-framework" }],
+        },
+        {
             category: "理解与对齐",
             items: [{ title: "角色设定 + 任务对齐", contentId: "role-align" }],
         },
