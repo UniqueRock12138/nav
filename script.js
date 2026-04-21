@@ -14,6 +14,16 @@
     return (c === undefined) ? `[内容缺失：未在 prompts.js 中找到 contentId "${item.contentId}"]` : c;
   }
 
+  function getContentById(contentId) {
+    const c = (typeof PROMPT_CONTENTS !== 'undefined') ? PROMPT_CONTENTS[contentId] : undefined;
+    return (c === undefined) ? `[内容缺失：未在 prompts.js 中找到 contentId "${contentId}"]` : c;
+  }
+
+  function normalizeContents(item) {
+    if (item.contents && item.contents.length) return item.contents;
+    return [{ label: null, contentId: item.contentId }];
+  }
+
   function renderFlatList(id, items) {
     const el = document.getElementById(id);
     if (!items || !items.length) {
@@ -48,33 +58,41 @@
       el.innerHTML = '<div class="empty">暂无内容</div>';
       return;
     }
-    el.innerHTML = prompts.map((cat, i) => `
-      <div class="category">
-        <div class="category-header" data-cat="${i}">
-          <span class="arrow">▶</span>
-          <span class="category-title">${escapeHtml(cat.category)}</span>
-          <span class="category-count">${cat.items.length}</span>
-        </div>
-        <div class="category-body" hidden>
-          ${cat.items.map((item, j) => `
-            <div class="prompt-item">
-              <div class="prompt-header" data-cat="${i}" data-item="${j}">
-                <span class="arrow">▶</span>
-                <span class="prompt-title">${escapeHtml(item.title)}</span>
-              </div>
-              <div class="prompt-body" hidden>
-                <div class="prompt-content-wrap">
-                  <pre class="prompt-content">${escapeHtml(getContent(item))}</pre>
-                  <div class="prompt-copy-row">
-                    <button class="copy-btn" data-cat="${i}" data-item="${j}">复制</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `).join('');
+    el.innerHTML = prompts.map(function(cat, i) {
+      const itemsHtml = cat.items.map(function(item, j) {
+        const contents = normalizeContents(item);
+        const multi = contents.length > 1;
+        const contentsHtml = contents.map(function(c, k) {
+          const subLabel = multi ? '<div class="prompt-sub-label">' + escapeHtml(c.label || c.contentId) + '</div>' : '';
+          return '<div class="prompt-content-wrap' + (multi ? ' prompt-content-wrap--multi' : '') + '">'
+            + subLabel
+            + '<pre class="prompt-content">' + escapeHtml(getContentById(c.contentId)) + '</pre>'
+            + '<div class="prompt-copy-row">'
+            + '<button class="copy-btn" data-cat="' + i + '" data-item="' + j + '" data-sub="' + k + '">复制</button>'
+            + '</div>'
+            + '</div>';
+        }).join('');
+        return '<div class="prompt-item">'
+          + '<div class="prompt-header" data-cat="' + i + '" data-item="' + j + '">'
+          + '<span class="arrow">▶</span>'
+          + '<span class="prompt-title">' + escapeHtml(item.title) + '</span>'
+          + '</div>'
+          + '<div class="prompt-body" hidden>'
+          + contentsHtml
+          + '</div>'
+          + '</div>';
+      }).join('');
+      return '<div class="category">'
+        + '<div class="category-header" data-cat="' + i + '">'
+        + '<span class="arrow">▶</span>'
+        + '<span class="category-title">' + escapeHtml(cat.category) + '</span>'
+        + '<span class="category-count">' + cat.items.length + '</span>'
+        + '</div>'
+        + '<div class="category-body" hidden>'
+        + itemsHtml
+        + '</div>'
+        + '</div>';
+    }).join('');
 
     el.addEventListener('click', onPromptsClick);
   }
@@ -84,8 +102,11 @@
     if (copyBtn) {
       e.stopPropagation();
       const cat = +copyBtn.dataset.cat;
-      const item = +copyBtn.dataset.item;
-      const text = getContent(DATA.prompts[cat].items[item]);
+      const itemIdx = +copyBtn.dataset.item;
+      const subIdx = copyBtn.dataset.sub !== undefined ? +copyBtn.dataset.sub : 0;
+      const item = DATA.prompts[cat].items[itemIdx];
+      const contents = normalizeContents(item);
+      const text = getContentById(contents[subIdx].contentId);
       doCopy(text, copyBtn);
       return;
     }

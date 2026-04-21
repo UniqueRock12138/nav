@@ -225,6 +225,21 @@ main {
   margin-top: 6px;
 }
 
+.prompt-content-wrap--multi {
+  margin-bottom: 16px;
+}
+.prompt-content-wrap--multi:last-child {
+  margin-bottom: 0;
+}
+
+.prompt-sub-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  padding-left: 2px;
+}
+
 .prompt-content {
   padding: 16px;
   background: var(--surface-hover);
