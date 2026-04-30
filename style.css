@@ -127,6 +127,21 @@ main {
 }
 
 /* ===== 提示词 ===== */
+.domain {
+  margin-bottom: 20px;
+}
+
+.domain-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 2px 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
 .category {
   background: var(--surface);
   border: 1px solid var(--border);

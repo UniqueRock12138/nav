@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const TABS = ['links', 'prompts', 'communities'];
+  const TABS = ['prompts', 'forum', 'tutorial', 'docs'];
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({
@@ -53,44 +53,52 @@
 
   function renderPrompts() {
     const el = document.getElementById('prompts');
-    const prompts = DATA.prompts || [];
-    if (!prompts.length) {
+    const domains = DATA.prompts || [];
+    if (!domains.length) {
       el.innerHTML = '<div class="empty">暂无内容</div>';
       return;
     }
-    el.innerHTML = prompts.map(function(cat, i) {
-      const itemsHtml = cat.items.map(function(item, j) {
-        const contents = normalizeContents(item);
-        const multi = contents.length > 1;
-        const contentsHtml = contents.map(function(c, k) {
-          const subLabel = multi ? '<div class="prompt-sub-label">' + escapeHtml(c.label || c.contentId) + '</div>' : '';
-          return '<div class="prompt-content-wrap' + (multi ? ' prompt-content-wrap--multi' : '') + '">'
-            + subLabel
-            + '<pre class="prompt-content">' + escapeHtml(getContentById(c.contentId)) + '</pre>'
-            + '<div class="prompt-copy-row">'
-            + '<button class="copy-btn" data-cat="' + i + '" data-item="' + j + '" data-sub="' + k + '">复制</button>'
+    el.innerHTML = domains.map(function(domain, di) {
+      const cats = domain.categories || [];
+      const categoriesHtml = cats.length ? cats.map(function(cat, ci) {
+        const itemsHtml = (cat.items || []).map(function(item, j) {
+          const contents = normalizeContents(item);
+          const multi = contents.length > 1;
+          const contentsHtml = contents.map(function(c, k) {
+            const subLabel = multi ? '<div class="prompt-sub-label">' + escapeHtml(c.label || c.contentId) + '</div>' : '';
+            return '<div class="prompt-content-wrap' + (multi ? ' prompt-content-wrap--multi' : '') + '">'
+              + subLabel
+              + '<pre class="prompt-content">' + escapeHtml(getContentById(c.contentId)) + '</pre>'
+              + '<div class="prompt-copy-row">'
+              + '<button class="copy-btn" data-domain="' + di + '" data-cat="' + ci + '" data-item="' + j + '" data-sub="' + k + '">复制</button>'
+              + '</div>'
+              + '</div>';
+          }).join('');
+          return '<div class="prompt-item">'
+            + '<div class="prompt-header" data-domain="' + di + '" data-cat="' + ci + '" data-item="' + j + '">'
+            + '<span class="arrow">▶</span>'
+            + '<span class="prompt-title">' + escapeHtml(item.title) + '</span>'
+            + '</div>'
+            + '<div class="prompt-body" hidden>'
+            + contentsHtml
             + '</div>'
             + '</div>';
         }).join('');
-        return '<div class="prompt-item">'
-          + '<div class="prompt-header" data-cat="' + i + '" data-item="' + j + '">'
+        return '<div class="category">'
+          + '<div class="category-header" data-domain="' + di + '" data-cat="' + ci + '">'
           + '<span class="arrow">▶</span>'
-          + '<span class="prompt-title">' + escapeHtml(item.title) + '</span>'
+          + '<span class="category-title">' + escapeHtml(cat.category) + '</span>'
+          + '<span class="category-count">' + (cat.items || []).length + '</span>'
           + '</div>'
-          + '<div class="prompt-body" hidden>'
-          + contentsHtml
+          + '<div class="category-body" hidden>'
+          + itemsHtml
           + '</div>'
           + '</div>';
-      }).join('');
-      return '<div class="category">'
-        + '<div class="category-header" data-cat="' + i + '">'
-        + '<span class="arrow">▶</span>'
-        + '<span class="category-title">' + escapeHtml(cat.category) + '</span>'
-        + '<span class="category-count">' + cat.items.length + '</span>'
-        + '</div>'
-        + '<div class="category-body" hidden>'
-        + itemsHtml
-        + '</div>'
+      }).join('') : '<div class="empty" style="padding:8px 16px 8px 24px">暂无内容</div>';
+
+      return '<div class="domain">'
+        + '<div class="domain-label">' + escapeHtml(domain.label) + '</div>'
+        + categoriesHtml
         + '</div>';
     }).join('');
 
@@ -101,10 +109,11 @@
     const copyBtn = e.target.closest('.copy-btn');
     if (copyBtn) {
       e.stopPropagation();
-      const cat = +copyBtn.dataset.cat;
+      const di = +copyBtn.dataset.domain;
+      const ci = +copyBtn.dataset.cat;
       const itemIdx = +copyBtn.dataset.item;
       const subIdx = copyBtn.dataset.sub !== undefined ? +copyBtn.dataset.sub : 0;
-      const item = DATA.prompts[cat].items[itemIdx];
+      const item = DATA.prompts[di].categories[ci].items[itemIdx];
       const contents = normalizeContents(item);
       const text = getContentById(contents[subIdx].contentId);
       doCopy(text, copyBtn);
@@ -207,13 +216,14 @@
   }
 
   function init() {
-    renderFlatList('links', DATA.links);
-    renderFlatList('communities', DATA.communities);
+    renderFlatList('forum', DATA.forum);
+    renderFlatList('tutorial', DATA.tutorial);
+    renderFlatList('docs', DATA.docs);
     renderPrompts();
     setupTabs();
 
     const hash = location.hash.slice(1);
-    if (TABS.includes(hash)) switchTab(hash);
+    switchTab(TABS.includes(hash) ? hash : TABS[0]);
   }
 
   if (document.readyState === 'loading') {
