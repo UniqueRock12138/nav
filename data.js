@@ -71,6 +71,31 @@ const DATA = {
                             title: "分析项目需求",
                             contentId: "project-analyze-requirements",
                         },
+                        {
+                            title: "明确任务",
+                            contentId: "project-clarify-task",
+                        },
+                        {
+                            title: "功能校验",
+                            contentId: "project-function-verification",
+                        },
+                        {
+                            title: "plan完成后的审查",
+                            contentId: "project-review-after-plan-completion",
+                        },
+                        {
+                            title: "找bug",
+                            contentId: "project-find-bug",
+                        },
+                        {
+                            title: "“实验-反馈-定位”诊断",
+                            contentId:
+                                "project-diagnosis-experiment-feedback-location",
+                        },
+                        {
+                            title: "复盘优化",
+                            contentId: "project-review-and-optimize",
+                        },
                     ],
                 },
                 {
@@ -80,7 +105,16 @@ const DATA = {
                         { title: "文档合并", contentId: "document-mergence" },
                         {
                             title: "梳理对话+提炼结论",
-                            contents: [{ label: "梳理对话", contentId: "" }],
+                            contents: [
+                                {
+                                    label: "梳理对话",
+                                    contentId: "Sort-out-the-dialogue",
+                                },
+                                {
+                                    label: "提炼结论",
+                                    contentId: "Extract-the-conclusion",
+                                },
+                            ],
                         },
                     ],
                 },
@@ -103,11 +137,11 @@ const DATA = {
                     category: "图片生成",
                     items: [
                         {
-                            title:"提取图片风格",
+                            title: "提取图片风格",
                             contentId: "extract-image-style",
-                        }
+                        },
                     ],
-                }
+                },
             ],
         },
         {
