@@ -157,6 +157,23 @@ const DATA = {
                         },
                     ],
                 },
+                {
+                    category: "深度对话",
+                    items: [
+                        {
+                            title: "判断内容类型",
+                            contentId: "classify-content-type",
+                        },
+                        {
+                            title: "观点/方法论类对话",
+                            contentId: "dialogue-opinion",
+                        },
+                        {
+                            title: "情绪/关系类对话",
+                            contentId: "dialogue-emotion",
+                        },
+                    ],
+                },
             ],
         },
     ],
