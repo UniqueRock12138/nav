@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const TABS = ['prompts', 'forum', 'tutorial', 'docs'];
+  const TABS = ['prompts', 'forum', 'tutorial', 'docs', 'algorithm', 'practice'];
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({
@@ -219,6 +219,8 @@
     renderFlatList('forum', DATA.forum);
     renderFlatList('tutorial', DATA.tutorial);
     renderFlatList('docs', DATA.docs);
+    renderFlatList('algorithm', DATA.algorithm);
+    renderFlatList('practice', DATA.practice);
     renderPrompts();
     setupTabs();
 

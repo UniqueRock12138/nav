@@ -16,6 +16,28 @@ const DATA = {
     // Docs
     docs: [{ name: "hugging-face/docs", url: "https://huggingface.co/docs" }],
 
+    // 算法刷题
+    algorithm: [
+        { name: "力扣 LeetCode", url: "https://leetcode.cn/" },
+        { name: "牛客网", url: "https://www.nowcoder.com/" },
+        { name: "AcWing", url: "https://www.acwing.com/" },
+        { name: "洛谷 Luogu", url: "https://www.luogu.com.cn/" },
+        { name: "Codeforces", url: "https://codeforces.com/" },
+        { name: "AtCoder", url: "https://atcoder.jp/" },
+        { name: "LintCode", url: "https://www.lintcode.com/" },
+        { name: "杭电 HDU OJ", url: "https://acm.hdu.edu.cn/" },
+        { name: "POJ", url: "http://poj.org/" },
+    ],
+
+    // 编程练习
+    practice: [
+        { name: "freeCodeCamp", url: "https://www.freecodecamp.org/" },
+        { name: "Codewars", url: "https://www.codewars.com/" },
+        { name: "Exercism", url: "https://exercism.org/" },
+        { name: "HackerRank", url: "https://www.hackerrank.com/" },
+        { name: "Codecademy", url: "https://www.codecademy.com/" },
+    ],
+
     // 提示词库
     prompts: [
         {
