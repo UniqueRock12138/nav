@@ -14,7 +14,11 @@ const DATA = {
     ],
 
     // Docs
-    docs: [{ name: "hugging-face/docs", url: "https://huggingface.co/docs" }],
+    docs: [
+        { name: "hugging-face/docs", url: "https://huggingface.co/docs" },
+        {name:"ClaudeCode docs",url:"https://code.claude.com/docs"},
+        {name:"codex docs",url:"https://developers.openai.com/codex"}
+    ],
 
     // 算法刷题
     algorithm: [
