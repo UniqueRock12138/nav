@@ -15,9 +15,10 @@ const DATA = {
 
     // Docs
     docs: [
-        { name: "hugging-face/docs", url: "https://huggingface.co/docs" },
-        {name:"ClaudeCode docs",url:"https://code.claude.com/docs"},
-        {name:"codex docs",url:"https://developers.openai.com/codex"}
+        { name: "hugging-face docs", url: "https://huggingface.co/docs" },
+        {name:"claudeCode docs",url:"https://code.claude.com/docs"},
+        {name:"codex docs",url:"https://developers.openai.com/codex"},
+        {name:"cursor docs",url:"https://cursor.com/cn/docs"}
     ],
 
     // 算法刷题
