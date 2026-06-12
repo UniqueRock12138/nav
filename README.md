@@ -1,37 +1,121 @@
-# 导航
+# 个人工具导航
 
-个人办公效率导航页。纯静态，无构建、无依赖。
+GitHub Pages 托管的个人效率工具门户。纯静态实现，无构建、无依赖。
 
 ## 运行
 
 双击 `index.html` 即可。
 
-## 部署到 GitHub Pages
+## 页面结构
 
-仓库根目录放这 5 个文件 → Settings → Pages → Source 选 `main` 分支根目录。
+- `index.html`：首页，总入口。
+- `tools.html`：工具箱，包含常用命令和 LLM 提示词库。
+- `nav.html`：网页导航，包含论坛、教程、Docs、算法刷题、编程练习。
+
+## 目录结构
+
+```text
+/
+├─ index.html
+├─ tools.html
+├─ nav.html
+├─ css/
+│  ├─ base.css
+│  ├─ layout.css
+│  └─ components.css
+├─ js/
+│  ├─ app.js
+│  ├─ copy.js
+│  ├─ renderCommands.js
+│  ├─ renderPrompts.js
+│  └─ renderLinks.js
+├─ data/
+│  ├─ commands.js
+│  ├─ navLinks.js
+│  └─ promptsIndex.js
+└─ prompts/
+   ├─ engineering/
+   ├─ visual/
+   └─ emotional/
+```
 
 ## 数据维护
 
-两个文件分工：
+### 新增常用命令
 
-- `data.js` — 轻量元信息（链接、社区、提示词的分类 / title / contentId）
-- `prompts.js` — 提示词原文（以 contentId 为 key 的字符串表）
+在 `data/commands.js` 对应分组的 `items` 中追加：
 
-### 新增链接 / 社区
+```js
+{
+  title: "命令标题",
+  command: "your command",
+  description: "命令说明"
+}
+```
 
-在 `data.js` 的 `links` 或 `communities` 数组追加 `{ name, url }`。
+当前命令分组：
+
+- Linux 命令
+- PowerShell 命令
+- Claude Code / Codex CLI 命令
+
+### 新增导航链接
+
+在 `data/navLinks.js` 对应分组的 `items` 中追加：
+
+```js
+{
+  title: "站点名称",
+  url: "https://example.com/",
+  description: "站点说明"
+}
+```
 
 ### 新增提示词
 
-1. 在 `prompts.js` 的 `PROMPT_CONTENTS` 追加一条 `'your-id': \`原文\`,`
-2. 在 `data.js` 对应分类的 `items` 追加 `{ title: "标题", contentId: "your-id" }`
-3. 若要新增整个分类，在 `DATA.prompts` 追加 `{ category, items: [] }`
+1. 在 `prompts/` 对应分类文件中向 `PROMPT_CONTENTS` 追加一条内容。
+2. 在 `data/promptsIndex.js` 对应分类的 `items` 中追加索引。
 
-### 原文转义（仅此两种情况）
+示例：
+
+```js
+// prompts/engineering/general.js
+Object.assign(PROMPT_CONTENTS, {
+  "your-id": `提示词原文`
+});
+```
+
+```js
+// data/promptsIndex.js
+{
+  title: "提示词标题",
+  contentId: "your-id"
+}
+```
+
+多段提示词使用：
+
+```js
+{
+  title: "提示词组",
+  contents: [
+    { label: "版本 1", contentId: "id-1" },
+    { label: "版本 2", contentId: "id-2" }
+  ]
+}
+```
+
+### 提示词原文转义
+
+模板字符串中只需要特别处理两类字符：
 
 | 原文 | 写成 |
 |---|---|
 | `` ` `` | `` \` `` |
 | `${` | `\${` |
 
-其它字符（双引号、反斜杠、换行等）直接写即可。
+其它字符通常可以直接写。
+
+## 部署到 GitHub Pages
+
+仓库根目录保留静态文件后，在 GitHub 仓库 Settings -> Pages 中选择对应分支和根目录发布。

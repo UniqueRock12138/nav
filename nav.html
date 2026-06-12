@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页导航 - 个人工具导航</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="nav">
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__title">个人工具导航</span>
+        <span class="brand__subtitle">Tools & Navigation</span>
+      </a>
+      <nav class="top-nav" aria-label="主导航">
+        <a class="top-nav__link" href="index.html" data-nav-link>首页</a>
+        <a class="top-nav__link" href="tools.html" data-nav-link>工具箱</a>
+        <a class="top-nav__link" href="nav.html" data-nav-link>网页导航</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="page-hero page-hero--compact">
+      <p class="page-kicker">Navigation</p>
+      <h1 class="page-title">网页导航</h1>
+      <p class="page-description">整理论坛、教程、官方文档、算法刷题和编程练习平台，统一入口，快速跳转。</p>
+      <div class="search-box">
+        <label class="sr-only" for="page-search">搜索站点</label>
+        <input class="search-box__input" id="page-search" type="search" placeholder="搜索站点、说明或 URL">
+      </div>
+    </section>
+
+    <div class="tool-layout">
+      <aside class="sidebar" aria-label="导航分组">
+        <div class="sidebar__group">
+          <p class="sidebar__title">网页导航</p>
+          <a class="sidebar__link" href="#forum" data-sidebar-link>论坛</a>
+          <a class="sidebar__link" href="#tutorial" data-sidebar-link>教程</a>
+          <a class="sidebar__link" href="#docs" data-sidebar-link>Docs</a>
+          <a class="sidebar__link" href="#algorithm" data-sidebar-link>算法刷题</a>
+          <a class="sidebar__link" href="#practice" data-sidebar-link>编程练习</a>
+        </div>
+      </aside>
+
+      <div id="nav-root" class="content-stack"></div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="data/navLinks.js"></script>
+  <script src="js/renderLinks.js"></script>
+</body>
+</html>
