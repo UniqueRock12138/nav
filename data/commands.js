@@ -63,6 +63,16 @@ window.COMMAND_GROUPS = [
         command: "/export",
         description: "可以选择复制到粘贴板或保存为txt文件"
       },
+      {
+        title:"【通用】在当前会话下创建新对话",
+        command: "/clear  别名：/new,",
+        description: "不退出当前进程的前提下创建新对话，历史对话可以通过/resume恢复。 Claude Code：/new 是 /clear 的别名，二者完全等价。Codex CLI：/new 与 /clear 是独立命令——/clear 清屏后开新对话，/new 仅开新对话不清屏。"
+      },
+      {
+        title:"【通用】将历史对话压缩为摘要",
+        command:"/compact",
+        description:"将历史对话压缩为摘要，替换原始上下文，释放 token 空间，但不清除文件改动。"
+      }
     ]
   }
 ];
