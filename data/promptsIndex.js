@@ -168,5 +168,29 @@ window.PROMPT_GROUPS = [
         ]
       }
     ]
+  },
+  {
+    id: "codex",
+    title: "Codex / 任务协同",
+    categories: [
+      {
+        id: "handoff",
+        title: "任务交接",
+        items: [
+          {
+            title: "整理交接消息并发送父任务",
+            contentId: "codex-handoff-send-parent"
+          },
+          {
+            title: "整理交接消息并输出",
+            contentId: "codex-handoff-output-copy"
+          },
+          {
+            title: "同步父任务最新状态",
+            contentId: "codex-sync-parent-status"
+          }
+        ]
+      }
+    ]
   }
 ];

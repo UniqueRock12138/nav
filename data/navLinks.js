@@ -153,5 +153,44 @@ window.NAV_GROUPS = [
         description: "交互式编程课程。"
       }
     ]
+  },
+  {
+    id: "news",
+    title: "资讯",
+    description: "AI 领域资讯聚合入口。",
+    items: [
+      {
+        title: "数字生命卡兹克AIHot",
+        url: "https://aihot.virxact.com/",
+        description: "AI 热点资讯聚合。"
+      }
+    ]
+  },
+  {
+    id: "leaderboard",
+    title: "榜单",
+    description: "模型能力与编程语言排行榜。",
+    items: [
+      {
+        title: "LMArena",
+        url: "https://arena.ai/leaderboard/agent",
+        description: "基于真人盲测投票，用户实际体验排名。"
+      },
+      {
+        title: "OpenCompass（司南）",
+        url: "https://opencompass.org.cn/home",
+        description: "上海人工智能实验室推出，有公共测评体系。"
+      },
+      {
+        title: "Hugging Face Open LLM Leaderboard",
+        url: "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/",
+        description: "开源大模型排行榜,适合自己部署模型时参考。"
+      },
+      {
+        title: "TIOBE",
+        url: "https://www.tiobe.com/tiobe-index/",
+        description: "编程语言流行度排行榜。"
+      }
+    ]
   }
 ];
