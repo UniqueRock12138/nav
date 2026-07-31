@@ -3,22 +3,9 @@
 
   const App = window.App = window.App || {};
 
-  function getGroups(query, activeGroupId) {
+  function getGroups(activeGroupId) {
     return (window.NAV_GROUPS || []).filter(function (group) {
       return !activeGroupId || group.id === activeGroupId;
-    }).map(function (group) {
-      const items = (group.items || []).filter(function (item) {
-        return App.matchesQuery(query, [
-          group.title,
-          group.description,
-          item.title,
-          item.description,
-          item.url
-        ]);
-      });
-      return Object.assign({}, group, { items: items });
-    }).filter(function (group) {
-      return group.items.length > 0;
     });
   }
 
@@ -55,16 +42,11 @@
     ].join("");
   }
 
-  App.renderLinks = function renderLinks(containerId, query, activeGroupId) {
+  App.renderLinks = function renderLinks(containerId, activeGroupId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const groups = getGroups(query, activeGroupId);
-    if (!groups.length) {
-      container.innerHTML = '<div class="empty-state">没有匹配的导航链接</div>';
-      return;
-    }
-
+    const groups = getGroups(activeGroupId);
     container.innerHTML = groups.map(renderGroup).join("");
     container.onclick = function (event) {
       const button = event.target.closest("[data-copy-url]");

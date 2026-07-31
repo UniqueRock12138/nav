@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>网页导航 - 个人工具导航</title>
+  <title>常用命令 - 个人工具导航</title>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
-<body data-page="nav">
+<body data-page="commands">
   <header class="app-header">
     <div class="app-header__inner">
       <a class="brand" href="index.html">
@@ -26,31 +26,27 @@
 
   <main class="page">
     <section class="page-hero page-hero--compact">
-      <p class="page-kicker">Navigation</p>
-      <h1 class="page-title">网页导航</h1>
+      <p class="page-kicker">Commands</p>
+      <h1 class="page-title">常用命令</h1>
     </section>
 
     <div class="tool-layout">
-      <aside class="sidebar" aria-label="导航分组">
+      <aside class="sidebar" aria-label="命令分组">
         <div class="sidebar__group">
-          <p class="sidebar__title">网页导航</p>
-          <a class="sidebar__link" href="#news" data-sidebar-link>资讯</a>
-          <a class="sidebar__link" href="#forum" data-sidebar-link>论坛</a>
-          <a class="sidebar__link" href="#leaderboard" data-sidebar-link>榜单</a>
-          <a class="sidebar__link" href="#tutorial" data-sidebar-link>教程</a>
-          <a class="sidebar__link" href="#docs" data-sidebar-link>Docs</a>
-          <a class="sidebar__link" href="#algorithm" data-sidebar-link>算法刷题</a>
-          <a class="sidebar__link" href="#practice" data-sidebar-link>编程练习</a>
+          <p class="sidebar__title">常用命令</p>
+          <a class="sidebar__link" href="#command-linux" data-sidebar-link>Linux 命令</a>
+          <a class="sidebar__link" href="#command-powershell" data-sidebar-link>PowerShell 命令</a>
+          <a class="sidebar__link" href="#command-ai-cli" data-sidebar-link>AI CLI 命令</a>
         </div>
       </aside>
 
-      <div id="nav-root" class="content-stack"></div>
+      <div id="commands-root" class="content-stack"></div>
     </div>
   </main>
 
   <script src="js/app.js"></script>
   <script src="js/copy.js"></script>
-  <script src="data/navLinks.js"></script>
-  <script src="js/renderLinks.js"></script>
+  <script src="data/commands.js"></script>
+  <script src="js/renderCommands.js"></script>
 </body>
 </html>

@@ -16,35 +16,9 @@
     return contents[contentId];
   }
 
-  function itemMatches(query, group, category, item) {
-    const contents = normalizeContents(item);
-    const contentText = contents.map(function (content) {
-      return [content.label, content.contentId, getContent(content.contentId)].join(" ");
-    }).join(" ");
-
-    return App.matchesQuery(query, [
-      group.title,
-      category.title,
-      item.title,
-      contentText
-    ]);
-  }
-
-  function getGroups(query, activeGroupId) {
+  function getGroups(activeGroupId) {
     return (window.PROMPT_GROUPS || []).filter(function (group) {
       return !activeGroupId || group.id === activeGroupId;
-    }).map(function (group) {
-      const categories = (group.categories || []).map(function (category) {
-        const items = (category.items || []).filter(function (item) {
-          return itemMatches(query, group, category, item);
-        });
-        return Object.assign({}, category, { items: items });
-      }).filter(function (category) {
-        return category.items.length > 0;
-      });
-      return Object.assign({}, group, { categories: categories });
-    }).filter(function (group) {
-      return group.categories.length > 0;
     });
   }
 
@@ -83,36 +57,17 @@
     ].join("");
   }
 
-  function renderCategory(category) {
-    return [
-      '<div class="prompt-group">',
-      '  <button class="prompt-group__header" type="button" data-disclosure>',
-      '    <span class="disclosure-icon">▶</span>',
-      '    <span class="prompt-group__title">' + App.escapeHtml(category.title) + '</span>',
-      '    <span class="prompt-group__count">' + category.items.length + '</span>',
-      "  </button>",
-      '  <div class="prompt-group__body" hidden>',
-      category.items.map(renderPromptItem).join(""),
-      "  </div>",
-      "</div>"
-    ].join("");
-  }
-
   function renderGroup(group) {
-    const count = group.categories.reduce(function (sum, category) {
-      return sum + category.items.length;
-    }, 0);
-
     return [
       '<section class="section" id="prompt-' + App.escapeHtml(group.id) + '">',
       '  <div class="section-header">',
       "    <div>",
       '      <h2 class="section-header__title">' + App.escapeHtml(group.title) + '</h2>',
-      '      <p class="section-header__desc">按分类保存可复制的 LLM 提示词。</p>',
+      '      <p class="section-header__desc">展开条目查看原文，复制按钮只复制对应提示词。</p>',
       "    </div>",
-      '    <span class="section-header__count">' + count + " 条</span>",
+      '    <span class="section-header__count">' + group.items.length + " 条</span>",
       "  </div>",
-      group.categories.map(renderCategory).join(""),
+      group.items.map(renderPromptItem).join(""),
       "</section>"
     ].join("");
   }
@@ -127,16 +82,11 @@
     if (icon) icon.textContent = open ? "▼" : "▶";
   }
 
-  App.renderPrompts = function renderPrompts(containerId, query, activeGroupId) {
+  App.renderPrompts = function renderPrompts(containerId, activeGroupId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const groups = getGroups(query, activeGroupId);
-    if (!groups.length) {
-      container.innerHTML = '<div class="empty-state">没有匹配的提示词</div>';
-      return;
-    }
-
+    const groups = getGroups(activeGroupId);
     container.innerHTML = groups.map(renderGroup).join("");
     container.onclick = function (event) {
       const copyButton = event.target.closest("[data-copy-content-id]");

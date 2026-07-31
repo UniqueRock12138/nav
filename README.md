@@ -9,7 +9,8 @@ GitHub Pages 托管的个人效率工具门户。纯静态实现，无构建、�
 ## 页面结构
 
 - `index.html`：首页，总入口。
-- `tools.html`：工具箱，包含常用命令和 LLM 提示词库。
+- `prompts.html`：LLM 提示词库。
+- `commands.html`：常用命令。
 - `nav.html`：网页导航，包含论坛、教程、Docs、算法刷题、编程练习。
 
 ## 目录结构
@@ -17,7 +18,8 @@ GitHub Pages 托管的个人效率工具门户。纯静态实现，无构建、�
 ```text
 /
 ├─ index.html
-├─ tools.html
+├─ prompts.html
+├─ commands.html
 ├─ nav.html
 ├─ css/
 │  ├─ base.css

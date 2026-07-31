@@ -3,22 +3,9 @@
 
   const App = window.App = window.App || {};
 
-  function getGroups(query, activeGroupId) {
+  function getGroups(activeGroupId) {
     return (window.COMMAND_GROUPS || []).filter(function (group) {
       return !activeGroupId || group.id === activeGroupId;
-    }).map(function (group) {
-      const items = (group.items || []).filter(function (item) {
-        return App.matchesQuery(query, [
-          group.title,
-          group.description,
-          item.title,
-          item.description,
-          item.command
-        ]);
-      });
-      return Object.assign({}, group, { items: items });
-    }).filter(function (group) {
-      return group.items.length > 0;
     });
   }
 
@@ -54,16 +41,11 @@
     ].join("");
   }
 
-  App.renderCommands = function renderCommands(containerId, query, activeGroupId) {
+  App.renderCommands = function renderCommands(containerId, activeGroupId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const groups = getGroups(query, activeGroupId);
-    if (!groups.length) {
-      container.innerHTML = '<div class="empty-state">没有匹配的命令</div>';
-      return;
-    }
-
+    const groups = getGroups(activeGroupId);
     container.innerHTML = groups.map(renderGroup).join("");
     container.onclick = function (event) {
       const button = event.target.closest("[data-copy-command]");

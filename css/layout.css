@@ -90,15 +90,9 @@
 
 .home-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 28px;
-}
-
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
 }
 
 .tool-layout {
@@ -193,7 +187,6 @@
   }
 
   .home-grid,
-  .quick-grid,
   .card-grid {
     grid-template-columns: 1fr;
   }

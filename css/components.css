@@ -1,30 +1,7 @@
-.search-box {
-  position: relative;
-  margin-top: 16px;
-}
-
-.search-box__input {
-  width: 100%;
-  min-height: 42px;
-  padding: 9px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-}
-
-.search-box__input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
 .entry-card,
-.quick-card,
 .link-card,
 .command-card,
-.prompt-group,
-.empty-state {
+.prompt-item {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -54,27 +31,10 @@
   gap: 8px;
 }
 
-.quick-card {
-  padding: 14px 16px;
-}
-
-.quick-card:hover,
 .entry-card:hover,
 .link-card:hover,
 .command-card:hover {
   border-color: var(--border-strong);
-}
-
-.quick-card__title {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 700;
-}
-
-.quick-card__desc {
-  display: block;
-  color: var(--text-muted);
-  font-size: 13px;
 }
 
 .section-header {
@@ -239,15 +199,14 @@
   color: var(--err);
 }
 
-.prompt-group {
+.prompt-item {
   overflow: hidden;
 }
 
-.prompt-group + .prompt-group {
+.prompt-item + .prompt-item {
   margin-top: 10px;
 }
 
-.prompt-group__header,
 .prompt-item__header {
   width: 100%;
   display: flex;
@@ -257,43 +216,21 @@
   background: transparent;
   color: var(--text);
   text-align: left;
-}
-
-.prompt-group__header {
   padding: 12px 14px;
 }
 
-.prompt-group__header:hover,
 .prompt-item__header:hover {
   background: var(--surface-hover);
 }
 
-.prompt-group__title,
 .prompt-item__title {
   flex: 1;
   min-width: 0;
   font-weight: 700;
 }
 
-.prompt-group__count {
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-.prompt-group__body {
-  border-top: 1px solid var(--border);
-}
-
-.prompt-item + .prompt-item {
-  border-top: 1px solid var(--border);
-}
-
-.prompt-item__header {
-  padding: 10px 14px 10px 32px;
-}
-
 .prompt-item__body {
-  padding: 0 14px 14px 32px;
+  padding: 0 14px 14px;
 }
 
 .prompt-content-block + .prompt-content-block {
@@ -332,12 +269,6 @@
   line-height: 1;
 }
 
-.empty-state {
-  padding: 28px 16px;
-  color: var(--text-muted);
-  text-align: center;
-}
-
 @media (max-width: 640px) {
   .section-header {
     align-items: flex-start;
@@ -357,13 +288,5 @@
 
   .link-card__actions {
     flex-wrap: wrap;
-  }
-
-  .prompt-item__header {
-    padding-left: 18px;
-  }
-
-  .prompt-item__body {
-    padding-left: 18px;
   }
 }
