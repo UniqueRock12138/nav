@@ -6,8 +6,18 @@ window.COMMAND_GROUPS = [
     items: [
       {
         title: "查看目录占用空间",
-        command: "du -sh [目录]",
+        command: "du -sh 目录",
         description: "-s 只汇总不列子项，-h 人类可读单位; 目标路径为 [目标]/* 表示统计该目录下所有子目录",
+      },
+      {
+        title:"查看安装包",
+        command:"dpkg -l | grep \ndpkg -s 包名",
+        description: "dpkg(Debian Package)是 Debian 系发行版的底层软件包管理工具，Ubuntu 也使用它。"
+      },
+      {
+        title: "查看进程",
+        command: "ps aux \ntop \nhtop",
+        description: "ps：获取进程快照，不实时刷新、基本不交互；\ntop：实时监控进程和系统资源，实时刷新并支持交互；\nhtop：更易用的交互式进程监控，实时刷新并支持交互。"
       }
     ]
   },
