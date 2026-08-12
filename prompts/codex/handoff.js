@@ -5,4 +5,6 @@ Object.assign(PROMPT_CONTENTS, {
     "codex-handoff-output-copy": `请先把本侧边任务整理成结构化交接消息输出，我将复制后发送给主任务。`,
 
     "codex-sync-parent-status": `同步父主任务的最新状态。`,
+
+    "codex-confirm-task-can-execute": `让主任务分析确认`,
 });

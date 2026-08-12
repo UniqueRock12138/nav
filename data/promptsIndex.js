@@ -165,6 +165,10 @@ window.PROMPT_GROUPS = [
       {
         title: "同步父任务最新状态",
         contentId: "codex-sync-parent-status"
+      },
+      {
+        title:"让主任务分析确认任务是否可以执行",
+        contentId: "codex-confirm-task-can-execute"  
       }
     ]
   }
