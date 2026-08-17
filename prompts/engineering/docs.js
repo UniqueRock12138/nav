@@ -9,8 +9,6 @@ Object.assign(PROMPT_CONTENTS, {
 - 保留有价值的信息，不遗漏关键技术细节。
 - 避免流水账式记录，按照逻辑结构重新组织内容。
 
----
-
 # 处理原则
 
 ## 1. 忠于事实，拒绝幻觉
@@ -25,7 +23,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 如果某信息无法从对话中确认，不要将其作为事实陈述。
 
----
 
 ## 2. 重组逻辑，而非简单整理聊天记录
 
@@ -44,7 +41,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 禁止为了保持文档结构完整而创建未讨论的主题。
 
----
 
 ## 3. 保留方案演进过程
 
@@ -55,7 +51,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 不存在明确变化时，不要强行构造。
 
----
 
 ## 4. 区分事实、分析和推断
 
@@ -66,7 +61,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 不要将模型自身推断包装成讨论结论。
 
----
 
 ## 5. 保留关键技术细节
 
@@ -74,7 +68,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 使用 Markdown 对应格式展示。
 
----
 
 ## 6. 动态生成章节
 
@@ -85,7 +78,6 @@ Object.assign(PROMPT_CONTENTS, {
 - 不输出空标题；
 - 不输出“暂无”“无相关内容”等占位描述。
 
----
 
 # 输出结构
 
@@ -117,8 +109,6 @@ Object.assign(PROMPT_CONTENTS, {
 
 不存在时删除整个章节。
 
----
-
 # 禁止行为
 
 禁止：
@@ -130,15 +120,13 @@ Object.assign(PROMPT_CONTENTS, {
 6. 输出模板占位内容；
 7. 将模型推测描述为事实。
 
----
 
 # 输出要求
 
 - 只输出 Markdown 正文。
 - 不输出前置说明或后置解释。
 - 语言客观、精炼、专业。
-- 删除聊天寒暄、重复表达和无价值内容。
-`,
+- 删除聊天寒暄、重复表达和无价值内容。`,
 
     "Extract-the-conclusion": `# Role
 你是一位知识库编辑，专长是从会议纪要类文档中提炼可长期复用的结论性条目。
