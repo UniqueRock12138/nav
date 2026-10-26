@@ -22,6 +22,18 @@ window.NAV_GROUPS = [
     ]
   },
   {
+    id: "game",
+    title: "游戏",
+    description: "趣味练习与闯关网站。",
+    items: [
+      {
+        title: "打字练习",
+        url: "https://dazidazi.com/",
+        description: "在线打字练习与闯关训练。"
+      }
+    ]
+  },
+  {
     id: "tutorial",
     title: "教程",
     description: "开发教程和学习资料。",

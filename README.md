@@ -11,7 +11,7 @@ GitHub Pages 托管的个人效率工具门户。纯静态实现，无构建、�
 - `index.html`：首页，总入口。
 - `prompts.html`：LLM 提示词库。
 - `commands.html`：常用命令。
-- `nav.html`：网页导航，包含论坛、教程、Docs、算法刷题、编程练习。
+- `nav.html`：网页导航，包含资讯、论坛、游戏、榜单、教程、Docs、算法刷题、编程练习。
 
 ## 目录结构
 
