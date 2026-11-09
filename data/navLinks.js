@@ -173,7 +173,7 @@ window.NAV_GROUPS = [
     items: [
       {
         title: "数字生命卡兹克AIHot",
-        url: "https://aihot.virxact.com/",
+        url: "https://aihot.news/",
         description: "AI 热点资讯聚合。"
       }
     ]
